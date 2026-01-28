@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ cliente.nome }}</h1>
+<p>Email: {{ cliente.email }}</p>
+
+<h2>Endereços:</h2>
+<ul>
+  {% for endereco in enderecos %}
+    <li>{{ endereco.rua }}, {{ endereco.numero }} - {{ endereco.cidade }}/{{ endereco.estado }}</li>
+  {% empty %}
+    <li>Esse cliente não possui endereços cadastrados.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

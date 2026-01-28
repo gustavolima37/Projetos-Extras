@@ -1,9 +1,16 @@
 from django.db import models
-
+from clientes.models import Cliente
 
 # Create your models here.
 
 class Endereco(models.Model):
+    cliente = models.ForeignKey(
+          Cliente, 
+          on_delete=models.CASCADE, 
+          related_name='enderecos',
+          null=True,
+          blank=True 
+          )
 
     rua = models.CharField(max_length= 100 )
     numero = models.CharField(max_length=10)
@@ -14,6 +21,5 @@ class Endereco(models.Model):
     cep = models.CharField(max_length= 10)
 
     def __str__(self):
-            return f"{self.rua},{self.numero}"
-
+            return f"{self.rua}, {self.numero}"
 

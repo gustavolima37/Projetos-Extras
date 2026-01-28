@@ -7,4 +7,9 @@ def lista_clientes(request):
 
 def detalhe_cliente(request, id):
     cliente = get_object_or_404(Cliente, id=id)
-    return render(request, 'clientes/detalhe.html', {'cliente': cliente})
+    enderecos = cliente.enderecos.all()
+
+    return render(request, 'clientes/detalhe.html', {
+        'cliente': cliente, 
+        'enderecos': enderecos
+        })

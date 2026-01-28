@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from enderecos.views import EnderecoViewSet
+from clientes import views
+from .views import home
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -33,10 +35,13 @@ urlpatterns = [
     # Adicionamos 'api/' antes de 'admin/'
     path('api/admin/', admin.site.urls), 
     path('api/', include(router.urls)),
+    path("", home, name="home"),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('pedidos/', include ('pedidos.urls')),
     path('produtos/', include('produtos.urls')),
     path('clientes/', include('clientes.urls')),
+    path('clientes/', views.lista_clientes, name='lista_clientes'),
+    path('clientes/<int:id>/', views.detalhe_cliente, name='detalhe_cliente'),
 ]
 
