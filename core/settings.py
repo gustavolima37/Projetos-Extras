@@ -63,7 +63,9 @@ INSTALLED_APPS = [
     'enderecos',
     'rest_framework',
     'rest_framework.authtoken',
-    'pedidos'
+    'pedidos',
+    'clientes',
+    'produtos',
 ]
 
 MIDDLEWARE = [
