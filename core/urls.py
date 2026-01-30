@@ -18,30 +18,36 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from enderecos.views import EnderecoViewSet
-from clientes import views
+from pedidos.views import PedidoViewSet
+from clientes.views import ClienteViewSet
+from produtos.views import ProdutoViewSet
+
 from .views import home
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from pedidos.views import PedidoViewSet
 
 router = DefaultRouter()
-router.register(r'enderecos',EnderecoViewSet)  
-router.register(r'pedidos',PedidoViewSet)  
-
+router.register(r'enderecos', EnderecoViewSet)  
+router.register(r'pedidos', PedidoViewSet)
+router.register(r'clientes', ClienteViewSet)
+router.register(r'produtos', ProdutoViewSet)  
 
 urlpatterns = [
-    # Adicionamos 'api/' antes de 'admin/'
-    path('api/admin/', admin.site.urls), 
+    # Admin tradicional
+    path('admin/', admin.site.urls),  
+
+    # API com DRF
     path('api/', include(router.urls)),
-    path("", home, name="home"),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('pedidos/', include ('pedidos.urls')),
-    path('produtos/', include('produtos.urls')),
-    path('clientes/', include('clientes.urls')),
-    path('clientes/', views.lista_clientes, name='lista_clientes'),
-    path('clientes/<int:id>/', views.detalhe_cliente, name='detalhe_cliente'),
-]
 
+    # Home
+    path("", home, name="home"),
+
+    # Apps tradicionais (HTML)
+    path('pedidos/', include('pedidos.urls')),
+    path('produtos/', include('produtos.urls')),
+    path('clientes/', include('clientes.urls')),  # agora centralizado
+]

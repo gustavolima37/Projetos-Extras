@@ -1,7 +1,7 @@
 from django.urls import path
-from . import views  # Isso importa o arquivo views.py que está na mesma pasta
+from . import views
 
 urlpatterns = [
-    # O caminho vazio '' significa que a URL será apenas /pedidos/
-    path('', views.lista_pedidos, name='lista_pedidos'),
+    path("", views.lista_pedidos, name="lista_pedidos"),
+    path("<int:id>/", views.detalhe_pedido, name="detalhe_pedido"),
 ]

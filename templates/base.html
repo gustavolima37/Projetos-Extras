@@ -2,11 +2,8 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Confeitaria{% endblock %}</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Confeitaria</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <!-- Navbar -->
@@ -21,26 +18,31 @@
             
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'lista_clientes' %}">Clientes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'lista_pedidos' %}">Pedidos</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lista_clientes' %}">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lista_produtos' %}">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lista_pedidos' %}">Pedidos</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Conteúdo principal -->
-    <div class="container mt-4">
+    <main class="container mt-4">
         {% block content %}
-        <!-- Aqui entra o conteúdo específico de cada página -->
         {% endblock %}
-    </div>
+    </main>
 
     <!-- Rodapé -->
     <footer class="bg-dark text-white text-center py-3 mt-4">
-        <p>&copy; 2026 - Projeto Confeitaria</p>
+        <p>&copy; {{ year|default:"2026" }} Confeitaria - Todos os direitos reservados</p>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
