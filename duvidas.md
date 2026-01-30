@@ -1,7 +1,11 @@
 ## python -- version
 ## python -m venv venv
 ## .\venv\Scripts\activate
-## pip install django
+
+## pip freeze > requirements.txt (gera o arquivo onde estará todas as bibliotecas usadas no projeto)
+
+##  pip install -r requirements.txt (instala todas as bibliotecas utilizadas no projeto.)
+
 ## django-admin startproject core .
 ## cls start
 ## python.exe -m pip instal -- upgrade pip
@@ -9,4 +13,3 @@
 ## python manage.py createsuperuser
 ## python manage.py startapp
 ## django admi starproject core .
-## pip install djangorestframework-simplejwt
